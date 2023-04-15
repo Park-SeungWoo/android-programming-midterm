@@ -2,4 +2,4 @@
 
 ## 시연 gif
 
-![시연](./result_captures/sample/sample.gif)
+![시연](./result_captures/test_gif/test.gif)
