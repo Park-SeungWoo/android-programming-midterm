@@ -3,10 +3,8 @@ package com.deep.mid_201910102;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
@@ -19,13 +17,11 @@ import android.widget.Toast;
 
 import com.deep.mid_201910102.custom.ListItemView;
 
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity {
 
     Button resetBtn, cntDownBtn, cntUpBtn, addTotalBtn;
     ImageView coffeeImg;
-    TextView totalTxt, cntTxt;
+    TextView totalTxt, cntTxt, emptyMenuTxt;
     RadioGroup coffeeGrp, sizeGrp;
     RadioButton americano, latte, cappuccino, small, medium, large;
     LinearLayout orderListView;
@@ -49,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         // text view
         totalTxt = (TextView) findViewById(R.id.totalPriceTxt);
         cntTxt = (TextView) findViewById(R.id.cntTxt);
+        emptyMenuTxt = (TextView) findViewById(R.id.emptyMenutxt);
 
         // radio group
         coffeeGrp = (RadioGroup) findViewById(R.id.coffeeRadioGrp);
@@ -67,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
 
         // scroll view
         listItemScroll = (HorizontalScrollView) findViewById(R.id.listItemScrollV);
-
 
         // set event handlers
         // reset btn
@@ -122,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
         return Long.parseLong(priceStr.split("\\+")[1].split("￦")[0]);
     }
 
+    // get current coffee, size names
     public String getCoffeeName() {
         String name = ((RadioButton) findViewById(coffeeGrp.getCheckedRadioButtonId())).getText().toString();
         return name.split("\\(")[0];
@@ -137,8 +134,8 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout wrapper = new LinearLayout(MainActivity.this);  // wrapper layout (그냥 custom 추가하면 margin때문에 점점 더 잘리므로 한번 더 감싸서 추가)
         wrapper.setOrientation(LinearLayout.HORIZONTAL);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        layoutParams.setMargins(0, 0, 7, 0);  // margin을 여기서 주기
+                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams.setMargins(0, 0, 10, 0);  // margin을 여기서 주기
         wrapper.setLayoutParams(layoutParams);
 
         ListItemView item = new ListItemView(MainActivity.this);  // main context 위에 생성
@@ -157,6 +154,11 @@ public class MainActivity extends AppCompatActivity {
                 listItemScroll.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
             }
         }, 150L);
+    }
+
+    // check menu is empty
+    public boolean isMenuListEmpty() {
+        return orderListView.getChildCount() == 0;
     }
 
     // event handler classes
@@ -183,6 +185,7 @@ public class MainActivity extends AppCompatActivity {
             addToTotalPrice(-getTotalPrice());  // reset total price
             // 리스트 초기화
             orderListView.removeAllViews();
+            emptyMenuTxt.setText("메뉴를 선택해주세요!");
         }
     }
 
@@ -190,13 +193,14 @@ public class MainActivity extends AppCompatActivity {
     class TotalPriceBtnOnClickListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
+            if (isMenuListEmpty()) emptyMenuTxt.setText("");
+
             Long cnt = Long.parseLong(cntTxt.getText().toString());
             addToTotalPrice((getCoffeePrice() + getSizePrice()) * cnt);
 
             // add order list
             for (int i = 0; i < cnt; i++)
                 addListItem(getCoffeeName(), getSizeName());
-
 
             // reset selected
             resetExceptTotalPrice();
@@ -219,6 +223,7 @@ public class MainActivity extends AppCompatActivity {
                     addToTotalPrice(-menu.getPrice());
                     orderListView.removeView((LinearLayout) menu.getParent());
                     listItemScroll.fullScroll(HorizontalScrollView.FOCUS_LEFT);
+                    if (isMenuListEmpty()) emptyMenuTxt.setText("메뉴를 선택해주세요!");
                 }
             });
             alertBuilder.setNegativeButton("취소", new DialogInterface.OnClickListener() {

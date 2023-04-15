@@ -1,21 +1,12 @@
 package com.deep.mid_201910102.custom;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-
-import com.deep.mid_201910102.MainActivity;
 import com.deep.mid_201910102.R;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class ListItemView extends androidx.constraintlayout.widget.ConstraintLayout {
 
