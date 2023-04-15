@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1"
+    tools:context=".MainActivity">
+
+    <ScrollView
+        android:id="@+id/contentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.7">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/titleLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/layout_border"
+                android:padding="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/titleTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/bazzi"
+                    android:text="커피 자판기"
+                    android:textSize="40sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/selectLayout"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/layout_border"
+                android:orientation="horizontal"
+                android:paddingHorizontal="10dp"
+                android:weightSum="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/titleLayout">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/coffeeSelectLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="200dp"
+                    android:layout_weight="0.5">
+
+                    <TextView
+                        android:id="@+id/coffeeSelectTitleTxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:fontFamily="@font/bazzi"
+                        android:gravity="center"
+                        android:text="커피 고르기"
+                        android:textSize="30sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <RadioGroup
+                        android:id="@+id/coffeeRadioGrp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/coffeeSelectTitleTxt">
+
+                        <RadioButton
+                            android:id="@+id/americanoRdo"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:buttonTint="#111"
+                            android:checked="true"
+                            android:fontFamily="@font/bazzi"
+                            android:text="아메리카노(1000￦)"
+                            android:textSize="20sp" />
+
+                        <RadioButton
+                            android:id="@+id/cafelatteRdo"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:buttonTint="#111"
+                            android:fontFamily="@font/bazzi"
+                            android:text="카페 라떼(1500￦)"
+                            android:textSize="20sp" />
+
+                        <RadioButton
+                            android:id="@+id/cappuccinoRdo"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:buttonTint="#111"
+                            android:fontFamily="@font/bazzi"
+                            android:text="카푸치노(2000￦)"
+                            android:textSize="20sp" />
+
+                    </RadioGroup>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/sizeSelectLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="200dp"
+                    android:layout_weight="0.5">
+
+                    <TextView
+                        android:id="@+id/sizeSelectTitleTxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:fontFamily="@font/bazzi"
+                        android:gravity="center"
+                        android:text="사이즈 고르기"
+                        android:textSize="30sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <RadioGroup
+                        android:id="@+id/sizeRadioGrp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/sizeSelectTitleTxt">
+
+                        <RadioButton
+                            android:id="@+id/smallRdo"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:buttonTint="#111"
+                            android:checked="true"
+                            android:fontFamily="@font/bazzi"
+                            android:text="Small(+0￦)"
+                            android:textSize="20sp" />
+
+                        <RadioButton
+                            android:id="@+id/mediumRdo"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:buttonTint="#111"
+                            android:fontFamily="@font/bazzi"
+                            android:text="Medium(+500￦)"
+                            android:textSize="20sp" />
+
+                        <RadioButton
+                            android:id="@+id/largeRdo"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:buttonTint="#111"
+                            android:fontFamily="@font/bazzi"
+                            android:text="Large(+1000￦)"
+                            android:textSize="20sp" />
+
+                    </RadioGroup>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/countAndViewLayout"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/layout_border"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/selectLayout">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/countLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5">
+
+                    <android.widget.Button
+                        android:id="@+id/minusCntBtn"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/custom_btn_shape"
+                        android:gravity="center"
+                        android:padding="0dp"
+                        android:text="−"
+                        android:textSize="25sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/cntTxt"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cntTxt"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:fontFamily="@font/bazzi"
+                        android:gravity="center"
+                        android:text="1"
+                        android:textSize="30sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <android.widget.Button
+                        android:id="@+id/addCntBtn"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/custom_btn_shape"
+                        android:gravity="center"
+                        android:padding="0dp"
+                        android:text="+"
+                        android:textSize="25sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/cntTxt"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/imgLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5">
+
+                    <ImageView
+                        android:id="@+id/coffeeImg"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/americano" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/bottomLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"
+        android:background="@drawable/bottom_layout_border"
+        android:orientation="vertical"
+        android:padding="0dp"
+        android:weightSum="1">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.25"
+            android:paddingRight="15dp">
+
+            <TextView
+                android:id="@+id/totalPriceTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bazzi"
+                android:gravity="center_vertical"
+                android:text="0￦"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <HorizontalScrollView
+            android:id="@+id/listItemScrollV"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.25"
+            android:paddingHorizontal="2dp">
+
+            <LinearLayout
+                android:id="@+id/listView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="8dp">
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:paddingHorizontal="10dp"
+            android:paddingBottom="10dp">
+
+            <android.widget.Button
+                android:id="@+id/totalSumBtn"
+                android:layout_width="300dp"
+                android:layout_height="70dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/custom_btn_shape"
+                android:fontFamily="@font/bazzi"
+                android:padding="0dp"
+                android:text="추가"
+                android:textSize="40sp" />
+
+            <android.widget.Button
+                android:id="@+id/resetBtn"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@drawable/custom_btn_shape"
+                android:fontFamily="@font/bazzi"
+                android:padding="0dp"
+                android:text="↻"
+                android:textFontWeight="800"
+                android:textSize="40sp" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>
